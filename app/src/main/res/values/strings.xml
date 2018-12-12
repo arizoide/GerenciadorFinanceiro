@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Gerenciador Financeiro</string>
+    <string name="SGF">Bem-vindo ao SGF</string>
+    <string name="cadastrar_nova_conta">Cadastrar Nova Conta</string>
+    <string name="title_activity_operacoes">OperacoesActivity</string>
 </resources>
