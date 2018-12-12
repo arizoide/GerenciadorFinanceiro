@@ -28,4 +28,12 @@ public class ContaEntity {
     public void setSaldo(Long saldo) {
         this.saldo = saldo;
     }
+
+    @Override
+    public String toString() {
+        return "ContaEntity{" +
+                "descricao='" + descricao + '\'' +
+                ", saldo=" + saldo +
+                '}';
+    }
 }
