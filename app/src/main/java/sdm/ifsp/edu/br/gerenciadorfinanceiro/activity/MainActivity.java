@@ -11,6 +11,7 @@ import sdm.ifsp.edu.br.gerenciadorfinanceiro.R;
 public class MainActivity extends AppCompatActivity {
 
     private Button cadastrarButton;
+    private Button operacoesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(getApplicationContext(), CadastrarActivity.class);
+                        startActivityForResult(i, 1);
+                    }
+                }
+        );
+
+        operacoesButton = findViewById(R.id.operacoesButton);
+
+        operacoesButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getApplicationContext(), OperacoesActivity.class);
                         startActivityForResult(i, 1);
                     }
                 }

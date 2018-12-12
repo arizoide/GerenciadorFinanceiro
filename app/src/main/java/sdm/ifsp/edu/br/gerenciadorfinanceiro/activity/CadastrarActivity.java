@@ -1,15 +1,15 @@
 package sdm.ifsp.edu.br.gerenciadorfinanceiro.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import sdm.ifsp.edu.br.gerenciadorfinanceiro.R;
 import sdm.ifsp.edu.br.gerenciadorfinanceiro.model.ContaEntity;
-import sdm.ifsp.edu.br.gerenciadorfinanceiro.repository.CadastrarRepository;
+import sdm.ifsp.edu.br.gerenciadorfinanceiro.repository.ContaRepository;
 
 public class CadastrarActivity extends AppCompatActivity {
 
@@ -18,9 +18,7 @@ public class CadastrarActivity extends AppCompatActivity {
     private EditText descricao;
     private EditText saldo;
 
-    private CadastrarRepository cadastrarRepository = new CadastrarRepository();
-
-
+    private ContaRepository contaRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +31,7 @@ public class CadastrarActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        contaRepository = new ContaRepository(CadastrarActivity.this);
 
                         descricao = findViewById(R.id.descricaoEditText);
                         saldo = findViewById(R.id.saldoEditText);
@@ -40,7 +39,7 @@ public class CadastrarActivity extends AppCompatActivity {
                         //Realiza o cadastro no 'banco'
                         ContaEntity conta = new ContaEntity(String.valueOf(descricao.getText()), Long.parseLong(String.valueOf(saldo.getText())));
 
-                        cadastrarRepository.salvar(conta);
+                        contaRepository.salvar(conta, false);
 
                         //Abre novamente a pagina inicial
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);

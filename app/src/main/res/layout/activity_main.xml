@@ -34,7 +34,7 @@
             tools:layout_editor_absoluteY="4dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/operacoesButton"
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:text="Operações" />
