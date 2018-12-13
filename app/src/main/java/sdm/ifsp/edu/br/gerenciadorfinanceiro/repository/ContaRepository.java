@@ -28,10 +28,9 @@ public class ContaRepository {
         values.put(SQLiteHelper.KEY_SALDO, c.getSaldo().toString());
 
 
-
         if (update) {    // se o id for maior que 0  então significa que é uma conta que será atualizada.
-            database.update(SQLiteHelper.DATABASE_TABLE, values, SQLiteHelper.KEY_ID + "='" + c.getDescricao().toString()+"'", null);
-        }    else {             // se o id for menor ou igual a 0  então significa que é uma conta que será cadastrada.
+            database.update(SQLiteHelper.DATABASE_TABLE, values, SQLiteHelper.KEY_ID + "='" + c.getDescricao().toString() + "'", null);
+        } else {             // se o id for menor ou igual a 0  então significa que é uma conta que será cadastrada.
             database.insert(SQLiteHelper.DATABASE_TABLE, null, values);
         }
 
@@ -68,7 +67,7 @@ public class ContaRepository {
 
         String[] cols = new String[]{SQLiteHelper.KEY_ID, SQLiteHelper.KEY_SALDO};
         String where = SQLiteHelper.KEY_ID + " = ?";
-        String[] argWhere = new String[] {descricao};
+        String[] argWhere = new String[]{descricao};
 
 
         cursor = database.query(SQLiteHelper.DATABASE_TABLE, cols, where, argWhere,
@@ -87,4 +86,31 @@ public class ContaRepository {
         return contas != null && contas.size() > 0 ? contas.get(0) : null;
     }
 
+    public Long getSaldoTotal() {
+        Long saldoTotal = 0L;
+
+        database = dbHelper.getReadableDatabase();
+        List<ContaEntity> contas = new ArrayList<>();
+
+        Cursor cursor;
+
+        String[] cols = new String[]{SQLiteHelper.KEY_ID, SQLiteHelper.KEY_SALDO};
+
+        cursor = database.query(SQLiteHelper.DATABASE_TABLE, cols, null, null,
+                null, null, SQLiteHelper.KEY_ID);
+
+        while (cursor.moveToNext()) {
+            contas.add(new ContaEntity(cursor.getString(0), Long.valueOf(cursor.getString(1))));
+        }
+
+        cursor.close();
+
+        database.close();
+
+        for (ContaEntity conta : contas) {
+            saldoTotal += conta.getSaldo();
+        }
+
+        return saldoTotal;
+    }
 }

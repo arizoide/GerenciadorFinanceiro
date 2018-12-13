@@ -33,7 +33,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Descrição da conta"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="94dp" />
 
@@ -51,7 +50,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Saldo"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="195dp" />
 
