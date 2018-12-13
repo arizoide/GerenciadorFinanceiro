@@ -35,9 +35,15 @@
 
         <Button
             android:id="@+id/operacoesButton"
-            android:layout_width="198dp"
+            android:layout_width="197dp"
             android:layout_height="wrap_content"
             android:text="Operações" />
+
+        <Button
+            android:id="@+id/relatorioButton"
+            android:layout_width="197dp"
+            android:layout_height="wrap_content"
+            android:text="Relatórios" />
 
     </LinearLayout>
 

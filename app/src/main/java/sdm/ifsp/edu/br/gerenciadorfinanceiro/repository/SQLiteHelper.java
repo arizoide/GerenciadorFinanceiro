@@ -18,6 +18,8 @@ class SQLiteHelper extends SQLiteOpenHelper {
     static final String OPERACAO = "operacao";
     static final String TIPO_OPERACAO = "tipo_operacao";
     static final String DESCRICAO_CONTA = "descricao_conta";
+    static final String DATA_OPERACAO = "data_operacao";
+    static final String DESCRICAO_OPERACAO = "descricao_operacao";
 
     private static final int DATABASE_VERSION = 1;
 
@@ -30,6 +32,8 @@ class SQLiteHelper extends SQLiteOpenHelper {
             OPERACAO + " TEXT NOT NULL, " +
             TIPO_OPERACAO + " TEXT NOT NULL, " +
             DESCRICAO_CONTA + " TEXT NOT NULL, " +
+            DESCRICAO_OPERACAO + " TEXT NOT NULL, " +
+            DATA_OPERACAO + " TEXT NOT NULL, " +
             VALOR + " TEXT NOT NULL);";
 
 

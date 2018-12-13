@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import sdm.ifsp.edu.br.gerenciadorfinanceiro.R;
@@ -89,7 +90,7 @@ public class OperacoesActivity extends Activity {
 
                         //Apos atualizar o saldo, cria a transacao que foi realizada
 
-                        TransacaoEntity transacao = new TransacaoEntity(conta, SOMA, spinnerTipos.getSelectedItem().toString() , Long.parseLong(String.valueOf(valor.getText())), String.valueOf(descricao.getText()));
+                        TransacaoEntity transacao = new TransacaoEntity(conta, SOMA, spinnerTipos.getSelectedItem().toString() , Long.parseLong(String.valueOf(valor.getText())), String.valueOf(descricao.getText()), Calendar.getInstance().getTime());
                         transacaoRepository.salvar(transacao);
 
                         //Abre novamente a pagina inicial
@@ -119,7 +120,7 @@ public class OperacoesActivity extends Activity {
 
                         //Apos atualizar o saldo, cria a transacao que foi realizada
 
-                        TransacaoEntity transacao = new TransacaoEntity(conta, SUBTRACAO, spinnerTipos.getSelectedItem().toString() , Long.parseLong(String.valueOf(valor.getText())), String.valueOf(descricao.getText()));
+                        TransacaoEntity transacao = new TransacaoEntity(conta, SUBTRACAO, spinnerTipos.getSelectedItem().toString() , Long.parseLong(String.valueOf(valor.getText())), String.valueOf(descricao.getText()), Calendar.getInstance().getTime());
                         transacaoRepository.salvar(transacao);
 
                         //Abre novamente a pagina inicial

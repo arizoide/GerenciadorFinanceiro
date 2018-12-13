@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button cadastrarButton;
     private Button operacoesButton;
+    private Button relatoriosButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(getApplicationContext(), OperacoesActivity.class);
+                        startActivityForResult(i, 1);
+                    }
+                }
+        );
+
+        relatoriosButton = findViewById(R.id.relatorioButton);
+
+        relatoriosButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(getApplicationContext(), RelatoriosActivity.class);
                         startActivityForResult(i, 1);
                     }
                 }

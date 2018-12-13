@@ -19,7 +19,16 @@
         <activity android:name=".activity.CadastrarActivity" />
         <activity
             android:name=".activity.OperacoesActivity"
-            android:label="@string/title_activity_operacoes"></activity>
+            android:label="@string/title_activity_operacoes" />
+        <activity
+            android:name=".activity.RelatoriosActivity"
+            android:label="@string/title_activity_relatorios" />
+        <activity
+            android:name=".activity.ContaRelatorioActivity"
+            android:label="@string/title_activity_conta_relatorio" />
+        <activity
+            android:name=".activity.RelatorioContaActivity"
+            android:label="@string/title_activity_relatorio_conta"></activity>
     </application>
 
 </manifest>

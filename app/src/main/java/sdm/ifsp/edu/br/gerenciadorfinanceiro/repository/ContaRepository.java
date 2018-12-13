@@ -86,4 +86,5 @@ public class ContaRepository {
         database.close();
         return contas != null && contas.size() > 0 ? contas.get(0) : null;
     }
+
 }

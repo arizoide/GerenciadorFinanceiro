@@ -1,22 +1,27 @@
 package sdm.ifsp.edu.br.gerenciadorfinanceiro.model;
 
+import java.util.Date;
+
 public class TransacaoEntity {
 
+    private Integer id;
     private ContaEntity conta;
     private String operacao;
     private String tipoOperacao;
     private String descricao;
     private Long valor;
+    private Date dataCriacao;
 
     public TransacaoEntity() {
     }
 
-    public TransacaoEntity(ContaEntity conta, String operacao, String tipoOperacao, Long valor, String descricao) {
+    public TransacaoEntity(ContaEntity conta, String operacao, String tipoOperacao, Long valor, String descricao, Date dataCriacao) {
         this.conta = conta;
         this.operacao = operacao;
         this.tipoOperacao = tipoOperacao;
         this.valor = valor;
         this.descricao = descricao;
+        this.dataCriacao = dataCriacao;
     }
 
     public ContaEntity getConta() {
@@ -59,14 +64,32 @@ public class TransacaoEntity {
         this.descricao = descricao;
     }
 
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "TransacaoEntity{" +
-                "conta=" + conta +
+                "id=" + id +
+                ", conta=" + conta +
                 ", operacao='" + operacao + '\'' +
                 ", tipoOperacao='" + tipoOperacao + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", valor=" + valor +
+                ", dataCriacao=" + dataCriacao +
                 '}';
     }
 }
