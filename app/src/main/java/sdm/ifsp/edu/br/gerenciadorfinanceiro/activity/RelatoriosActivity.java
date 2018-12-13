@@ -28,7 +28,8 @@ public class RelatoriosActivity extends Activity {
                     public void onClick(View view) {
 
                         //Por hora lista com logs o relatorio
-
+                        Intent i = new Intent(getApplicationContext(), RelatorioContaActivity.class);
+                        startActivityForResult(i, 1);
 
 
                     }
@@ -41,7 +42,7 @@ public class RelatoriosActivity extends Activity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), OperacoesActivity.class);
+                        Intent i = new Intent(getApplicationContext(), RelatorioTipoTransacaoActivity.class);
                         startActivityForResult(i, 1);
                     }
                 }
@@ -53,7 +54,7 @@ public class RelatoriosActivity extends Activity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(getApplicationContext(), RelatoriosActivity.class);
+                        Intent i = new Intent(getApplicationContext(), RelatorioNaturezaActivity.class);
                         startActivityForResult(i, 1);
                     }
                 }

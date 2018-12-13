@@ -21,8 +21,8 @@ import sdm.ifsp.edu.br.gerenciadorfinanceiro.repository.TransacaoRepository;
 
 public class OperacoesActivity extends Activity {
 
-    private static final String SOMA = "SOMA";
-    private static final String SUBTRACAO = "SUBTRACAO";
+    private static final String SOMA = "CREDITO";
+    private static final String SUBTRACAO = "DEBITO";
 
     private Spinner spinnerContas;
     private Spinner spinnerTipos;

@@ -13,6 +13,10 @@ public class ContaEntity {
         this.saldo = saldo;
     }
 
+    public ContaEntity(String descricao) {
+        this.descricao = descricao;
+    }
+
     public String getDescricao() {
         return descricao;
     }

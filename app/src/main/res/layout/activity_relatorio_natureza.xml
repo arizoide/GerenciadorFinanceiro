@@ -4,32 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ContaRelatorioActivity">
+    tools:context=".activity.RelatorioContaActivity">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Selecione a conta: " />
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/naturezasSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="45dp" />
+            android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/gerarRelatorioContaButton"
+            android:id="@+id/gerarRelatorioNaturezaOperButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gerar Relatório" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/voltarRelatorioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="369dp" />
 
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

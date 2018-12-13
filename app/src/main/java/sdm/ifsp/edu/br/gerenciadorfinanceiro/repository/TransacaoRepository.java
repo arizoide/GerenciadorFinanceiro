@@ -45,28 +45,6 @@ public class TransacaoRepository {
         database.close();
     }
 
-
-    public List<String> listarContas() {
-        database = dbHelper.getReadableDatabase();
-        List<String> contas = new ArrayList<>();
-
-        Cursor cursor;
-
-        String[] cols = new String[]{SQLiteHelper.KEY_ID};
-
-        cursor = database.query(SQLiteHelper.DATABASE_TABLE, cols, null, null,
-                null, null, SQLiteHelper.KEY_ID);
-
-        while (cursor.moveToNext()) {
-            contas.add(cursor.getString(0));
-        }
-
-        cursor.close();
-
-        database.close();
-        return contas;
-    }
-
     public List<TransacaoEntity> buscarPorConta(ContaEntity conta) throws ParseException {
         database = dbHelper.getReadableDatabase();
         List<TransacaoEntity> transacoes = new ArrayList<>();
@@ -87,7 +65,71 @@ public class TransacaoRepository {
             transacaoEntity.setValor(cursor.getLong(1));
             transacaoEntity.setOperacao(cursor.getString(2));
             transacaoEntity.setDataCriacao(simpleDateFormat.parse(cursor.getString(3)));
-            transacaoEntity.setDescricao(cursor.getString(4));
+            transacaoEntity.setConta(new ContaEntity(cursor.getString(4)));
+            transacaoEntity.setTipoOperacao(cursor.getString(5));
+            transacaoEntity.setDescricao(cursor.getString(6));
+            transacoes.add(transacaoEntity);
+        }
+
+        cursor.close();
+
+        database.close();
+        return transacoes;
+    }
+
+    public List<TransacaoEntity> buscarPorTipoOperacao(String tipo) throws ParseException {
+        database = dbHelper.getReadableDatabase();
+        List<TransacaoEntity> transacoes = new ArrayList<>();
+
+        Cursor cursor;
+
+        String[] cols = new String[]{SQLiteHelper.ID, SQLiteHelper.VALOR, SQLiteHelper.OPERACAO, SQLiteHelper.DATA_OPERACAO, SQLiteHelper.DESCRICAO_CONTA, SQLiteHelper.TIPO_OPERACAO, SQLiteHelper.DESCRICAO_OPERACAO};
+        String where = SQLiteHelper.TIPO_OPERACAO + " = ?";
+        String[] argWhere = new String[]{tipo};
+
+
+        cursor = database.query(SQLiteHelper.DATABASE_TABLE_OPERACOES, cols, where, argWhere,
+                null, null, SQLiteHelper.DATA_OPERACAO);
+
+        while (cursor.moveToNext()) {
+            TransacaoEntity transacaoEntity = new TransacaoEntity();
+            transacaoEntity.setId(cursor.getInt(0));
+            transacaoEntity.setValor(cursor.getLong(1));
+            transacaoEntity.setOperacao(cursor.getString(2));
+            transacaoEntity.setDataCriacao(simpleDateFormat.parse(cursor.getString(3)));
+            transacaoEntity.setConta(new ContaEntity(cursor.getString(4)));
+            transacaoEntity.setTipoOperacao(cursor.getString(5));
+            transacaoEntity.setDescricao(cursor.getString(6));
+            transacoes.add(transacaoEntity);
+        }
+
+        cursor.close();
+
+        database.close();
+        return transacoes;
+    }
+
+    public List<TransacaoEntity> buscarPorNatureza(String natureza) throws ParseException {
+        database = dbHelper.getReadableDatabase();
+        List<TransacaoEntity> transacoes = new ArrayList<>();
+
+        Cursor cursor;
+
+        String[] cols = new String[]{SQLiteHelper.ID, SQLiteHelper.VALOR, SQLiteHelper.OPERACAO, SQLiteHelper.DATA_OPERACAO, SQLiteHelper.DESCRICAO_CONTA, SQLiteHelper.TIPO_OPERACAO, SQLiteHelper.DESCRICAO_OPERACAO};
+        String where = SQLiteHelper.OPERACAO + " = ?";
+        String[] argWhere = new String[]{natureza};
+
+
+        cursor = database.query(SQLiteHelper.DATABASE_TABLE_OPERACOES, cols, where, argWhere,
+                null, null, SQLiteHelper.DATA_OPERACAO);
+
+        while (cursor.moveToNext()) {
+            TransacaoEntity transacaoEntity = new TransacaoEntity();
+            transacaoEntity.setId(cursor.getInt(0));
+            transacaoEntity.setValor(cursor.getLong(1));
+            transacaoEntity.setOperacao(cursor.getString(2));
+            transacaoEntity.setDataCriacao(simpleDateFormat.parse(cursor.getString(3)));
+            transacaoEntity.setConta(new ContaEntity(cursor.getString(4)));
             transacaoEntity.setTipoOperacao(cursor.getString(5));
             transacaoEntity.setDescricao(cursor.getString(6));
             transacoes.add(transacaoEntity);

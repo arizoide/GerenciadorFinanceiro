@@ -24,11 +24,14 @@
             android:name=".activity.RelatoriosActivity"
             android:label="@string/title_activity_relatorios" />
         <activity
-            android:name=".activity.ContaRelatorioActivity"
-            android:label="@string/title_activity_conta_relatorio" />
-        <activity
             android:name=".activity.RelatorioContaActivity"
-            android:label="@string/title_activity_relatorio_conta"></activity>
+            android:label="@string/title_activity_relatorio_conta" />
+        <activity
+            android:name=".activity.RelatorioNaturezaActivity"
+            android:label="@string/title_activity_relatorio_natureza" />
+        <activity
+            android:name=".activity.RelatorioTipoTransacaoActivity"
+            android:label="@string/title_activity_relatorio_tipo_transacao"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,8 @@
 package sdm.ifsp.edu.br.gerenciadorfinanceiro.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import sdm.ifsp.edu.br.gerenciadorfinanceiro.R;
@@ -18,51 +19,49 @@ import sdm.ifsp.edu.br.gerenciadorfinanceiro.model.TransacaoEntity;
 import sdm.ifsp.edu.br.gerenciadorfinanceiro.repository.ContaRepository;
 import sdm.ifsp.edu.br.gerenciadorfinanceiro.repository.TransacaoRepository;
 
-public class RelatorioContaActivity extends Activity {
+public class RelatorioNaturezaActivity extends Activity {
 
+    private Spinner spinnerNaturezas;
+
+    private Button gerarRelatorioNaturezaButton;
     private Button voltarButton;
-
-    private Spinner spinnerContas;
-    private Button gerarRelatorioContaButton;
-
-    ContaRepository contaRepository = new ContaRepository(RelatorioContaActivity.this);
-    TransacaoRepository transacaoRepository = new TransacaoRepository(RelatorioContaActivity.this);
+    private TransacaoRepository transacaoRepository = new TransacaoRepository(RelatorioNaturezaActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_relatorio_conta);
+        setContentView(R.layout.activity_relatorio_natureza);
 
-        //Busca as contas para colocar no spinner
-        spinnerContas = findViewById(R.id.contasRelatorioSpinner);
+        //Carrega o spinner com as opcoes de transacoes
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, listaContas()
-        );
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerContas.setAdapter(dataAdapter);
+        spinnerNaturezas = (Spinner) findViewById(R.id.naturezasSpinner);
+        final List<String> categorias = new ArrayList<String>();
+        categorias.add("CREDITO");
+        categorias.add("DEBITO");
+        ArrayAdapter<String> tiposAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, categorias);
+        tiposAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerNaturezas.setAdapter(tiposAdapter);
 
         //Botao para voltar para a tela inicial da porra toda
-        gerarRelatorioContaButton = findViewById(R.id.gerarRelatorioContaButton2);
+        gerarRelatorioNaturezaButton = findViewById(R.id.gerarRelatorioNaturezaOperButton);
 
-        gerarRelatorioContaButton.setOnClickListener(
+        gerarRelatorioNaturezaButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //Gerar relatorio nos logs por enquanto
                         //Realiza o cadastro no 'banco'
-                        ContaEntity conta = contaRepository.buscarContaPelaDescricao(spinnerContas.getSelectedItem().toString());
+                        gerarRelatorio(spinnerNaturezas.getSelectedItem().toString());
 
-                        gerarRelatorio(conta);
-
-                        Intent i = new Intent(getApplicationContext(), RelatorioContaActivity.class);
+                        Intent i = new Intent(getApplicationContext(), RelatorioNaturezaActivity.class);
                         startActivityForResult(i, 1);
                     }
                 }
         );
 
         //Botao para voltar para a tela inicial da porra toda
-        voltarButton = findViewById(R.id.voltarRelatorioContaButton);
+        voltarButton = findViewById(R.id.voltarRelatorioButton);
 
         voltarButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -75,10 +74,11 @@ public class RelatorioContaActivity extends Activity {
         );
     }
 
-    private void gerarRelatorio(ContaEntity conta) {
+
+    private void gerarRelatorio(String natureza) {
         List<TransacaoEntity> transacaoEntities = null;
         try {
-            transacaoEntities = transacaoRepository.buscarPorConta(conta);
+            transacaoEntities = transacaoRepository.buscarPorNatureza(natureza);
         } catch (ParseException e) {
             Log.e("ERROR: ", "Deu Ruim para converter a data");
         }
@@ -88,8 +88,5 @@ public class RelatorioContaActivity extends Activity {
         }
     }
 
-    private List<String> listaContas() {
-        return contaRepository.listarContas();
-    }
 
 }
